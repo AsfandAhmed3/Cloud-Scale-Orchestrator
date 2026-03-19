@@ -1,0 +1,41 @@
+services:
+  mongo:
+    image: mongo:6
+    container_name: proshop-mongo
+    restart: unless-stopped
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: proshop-backend
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    environment:
+      NODE_ENV: development
+      PORT: 5000
+      MONGO_URI: mongodb://mongo:27017/proshop
+      JWT_SECRET: devops-assignment-secret-change-me
+      PAGINATION_LIMIT: 8
+      PAYPAL_CLIENT_ID: assignment-mode
+    ports:
+      - "5002:5000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: proshop-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3001:80"
+
+volumes:
+  mongo_data:
