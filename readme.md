@@ -1,4 +1,4 @@
-# Assignment 2: Containerization and Deployment using Docker & Kubernetes
+# Containerization and Deployment using Docker & Kubernetes
 
 ## Project Overview
 
@@ -296,8 +296,3 @@ Use `&` call operator:
 
 ---
 
-## Submission Notes
-
-- Commit all Docker files, Compose file, Kubernetes manifests, and README.
-- Include screenshot evidence for all required tasks.
-- Push to your GitHub repository and submit repository link.
